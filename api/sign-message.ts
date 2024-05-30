@@ -2,11 +2,21 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 
+import { ethers } from "ethers";
+
 const server = express();
 
 server.use(express.json());
 server.use(bodyParser.json({}));
 server.use(cors());
+
+const privateKey = process.env.PRIVATE_KEY;
+if (!privateKey) {
+  console.error("> Error: Private Key >> 404 in env!");
+  process.exit(1);
+}
+
+const wallet = new ethers.Wallet(privateKey);
 
 server.post("/api/sign-message", async (req, res) => {
   try {

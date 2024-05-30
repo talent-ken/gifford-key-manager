@@ -40,6 +40,27 @@ server.post("/api", async (req, res) => {
   }
 });
 
+server.put("/api", async (req, res) => {
+  try {
+    const { message, signedMessage, signerAddress } = req.body;
+    if (!message || !signedMessage || !signerAddress) {
+      return res
+        .status(400)
+        .json({ error: "Either one or more param(s) are missing!" });
+    }
+
+    const recoveredAddress = ethers.verifyMessage(message, signedMessage);
+    const isValid =
+      recoveredAddress.toLowerCase() ===
+      (signerAddress as string).toLowerCase();
+
+    res.json({ payload: isValid });
+  } catch (error) {
+    console.error("> Error: Verify Message >> ", error);
+    res.status(500).json({ error });
+  }
+});
+
 module.exports = (req: any, res: any) => {
   return server(req, res);
 };
