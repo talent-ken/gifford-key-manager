@@ -2,10 +2,10 @@
   "name": "gifford-key-manager",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "api/index.ts",
   "scripts": {
     "build": "tsc",
-    "start": "tsc & nodemon --exec node dist/index.js",
+    "start": "nodemon --exec ts-node api/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
