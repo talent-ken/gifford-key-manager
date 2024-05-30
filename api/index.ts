@@ -25,7 +25,7 @@ if (!privateKey) {
 
 const wallet = new ethers.Wallet(privateKey);
 
-server.get("/", async (_, res) => {
+server.get("/", (_, res) => {
   res.send("GIFFORD Tech API Server is running!");
 });
 
