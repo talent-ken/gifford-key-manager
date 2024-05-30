@@ -8,7 +8,7 @@ server.use(express.json());
 server.use(bodyParser.json({}));
 server.use(cors());
 
-server.post("/", (_, res) => {
+server.post("/api/express", (_, res) => {
   res.status(200).json({ message: "Hello from Express!" });
 });
 
