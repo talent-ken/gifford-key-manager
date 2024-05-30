@@ -25,6 +25,10 @@ if (!privateKey) {
 
 const wallet = new ethers.Wallet(privateKey);
 
+server.get("/", async (req, res) => {
+  res.send("GIFFORD Tech API Server is running!");
+});
+
 server.post("/sign-message", async (req, res) => {
   try {
     const message = req.body.message;
