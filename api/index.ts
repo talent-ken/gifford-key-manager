@@ -16,5 +16,5 @@ server.get("/api/", (_, res) => {
 });
 
 module.exports = (req: any, res: any) => {
-  server(req, res);
+  return server(req, res);
 };

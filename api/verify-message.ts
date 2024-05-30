@@ -37,5 +37,5 @@ server.post("/api/verify-message", async (req, res) => {
 });
 
 module.exports = (req: any, res: any) => {
-  server(req, res);
+  return server(req, res);
 };
