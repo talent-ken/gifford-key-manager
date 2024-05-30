@@ -15,6 +15,10 @@ server.get("/api", (_, res) => {
   res.send("GIFFORD Tech API Server is running!");
 });
 
+server.post("/api/express", (_, res) => {
+  res.status(200).json({ message: "Hello from Express!" });
+});
+
 module.exports = (req: any, res: any) => {
   return server(req, res);
 };
