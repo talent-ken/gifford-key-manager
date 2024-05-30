@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import bodyParser from "body-parser";
 import { ethers } from "ethers";
@@ -6,15 +9,12 @@ import cors from "cors";
 import fs from "fs";
 import https from "https";
 import path from "path";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const server = express();
 const PORT = process.env.PORT || 8800;
 
 server.use(express.json());
-server.use(bodyParser.json());
+server.use(bodyParser.json({}));
 server.use(cors());
 
 const privateKey = process.env.PRIVATE_KEY;
