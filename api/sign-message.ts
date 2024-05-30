@@ -17,7 +17,7 @@ if (!privateKey) {
 
 const wallet = new ethers.Wallet(privateKey);
 
-server.post("/sign-message", async (req, res) => {
+server.post("/api/sign-message", async (req, res) => {
   try {
     const message = req.body.message;
     if (!message) {

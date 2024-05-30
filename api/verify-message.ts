@@ -15,7 +15,7 @@ if (!privateKey) {
   process.exit(1);
 }
 
-server.post("/verify-message", async (req, res) => {
+server.post("/api/verify-message", async (req, res) => {
   try {
     const { message, signedMessage, signerAddress } = req.body;
     if (!message || !signedMessage || !signerAddress) {
