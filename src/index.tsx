@@ -17,9 +17,10 @@ server.use(express.json());
 server.use(bodyParser.json());
 server.use(cors());
 
-const privateKey = process.env.PRIVATE_KEY";
+const privateKey = process.env.PRIVATE_KEY;
 if (!privateKey) {
   console.error("> Error: Private Key >> 404 in env!");
+  process.exit(1);
 }
 
 const wallet = new ethers.Wallet(privateKey);
