@@ -11,7 +11,7 @@ server.use(express.json());
 server.use(bodyParser.json({}));
 server.use(cors());
 
-server.get("/api/", (_, res) => {
+server.get("/", (_, res) => {
   res.send("GIFFORD Tech API Server is running!");
 });
 
