@@ -1,0 +1,7 @@
+services:
+  default:
+    memory: 256MB
+    plan: free
+    envs:
+      - PORT: ${{env.PORT}}
+      - PRIVATE_KEY: ${{env.PRIVATE_KEY}}
