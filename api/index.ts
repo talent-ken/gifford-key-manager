@@ -35,9 +35,10 @@ server.post("/api", async (req, res) => {
     console.log({ msgContent: message });
 
     const { contractAddr, walletAddr, amount, nonce, chainId } = message;
+    const bigIntAmount = BigInt(amount as string);
     const packedMessage = ethers.solidityPacked(
       ["address", "uint256", "address", "uint256", "bytes32"],
-      [contractAddr, chainId, walletAddr, amount, nonce],
+      [contractAddr, chainId, walletAddr, bigIntAmount, nonce],
     );
     const signMessage = ethers.getBytes(
       ethers.solidityPackedKeccak256(["bytes"], [packedMessage]),
