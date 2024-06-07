@@ -27,7 +27,7 @@ server.get("/api", (_, res) => {
 
 server.post("/api", async (req, res) => {
   try {
-    const message = req.body;
+    const message = req.body.message;
     if (!Object.keys(message).length) {
       return res.status(400).json({ error: "Message param is missing!" });
     }
