@@ -32,8 +32,7 @@ server.post("/api", async (req, res) => {
       return res.status(400).json({ error: "Message param is missing!" });
     }
 
-    const rawMessage = JSON.parse(message);
-    const signedMessage: string = await wallet.signMessage(rawMessage);
+    const signedMessage: string = await wallet.signMessage(message);
     const { r, s, v } = ethers.Signature.from(signedMessage);
     res.json({ payload: { r, s, v } });
   } catch (error) {
