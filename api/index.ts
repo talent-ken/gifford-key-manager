@@ -27,14 +27,23 @@ server.get("/api", (_, res) => {
 
 server.post("/api", async (req, res) => {
   try {
-    const message = req.body.message;
-    if (!message) {
+    const message = req.body;
+    if (!Object.keys(message).length) {
       return res.status(400).json({ error: "Message param is missing!" });
     }
 
     console.log({ msgContent: message });
 
-    const signedMessage: string = await wallet.signMessage(message);
+    const { contractAddr, walletAddr, amount, nonce, chainId } = message;
+    const packedMessage = ethers.solidityPacked(
+      ["address", "uint256", "address", "uint256", "bytes32"],
+      [contractAddr, chainId, walletAddr, amount, nonce],
+    );
+    const signMessage = ethers.getBytes(
+      ethers.solidityPackedKeccak256(["bytes"], [packedMessage]),
+    );
+
+    const signedMessage: string = await wallet.signMessage(signMessage);
     const { r, s, v } = ethers.Signature.from(signedMessage);
     res.json({ payload: { r, s, v } });
   } catch (error) {
